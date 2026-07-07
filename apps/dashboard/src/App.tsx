@@ -2,12 +2,19 @@ import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 
+import Orders from "./pages/Orders";
+import Inventory from "./pages/Inventory";
+import Customers from "./pages/Customers";
+import Employees from "./pages/Employees";
+import Finance from "./pages/Finance";
+import Reports from "./pages/Reports";
+import Settings from "./pages/Settings";
 import Home from "./pages/customer/Home";
 import Products from "./pages/customer/Products";
 import ProductDetails from "./pages/customer/ProductDetails";
 import Cart from "./pages/customer/Cart";
 import Checkout from "./pages/customer/Checkout";
-import Orders from "./pages/customer/Orders";
+import Order from "./pages/customer/Orders";
 import Complaints from "./pages/customer/Complaints";
 import Profile from "./pages/customer/Profile";
 import ProcessingOrder from "./pages/customer/ProcessingOrder";
@@ -22,6 +29,13 @@ function App() {
       {/* Business */}
 
       <Route path="/" element={<Dashboard />} />
+      <Route path="/inventory" element={<Inventory />} />
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/customers" element={<Customers />}/>
+      <Route path="/employees" element={<Employees />} />
+      <Route path="/finance" element={<Finance />} />
+      <Route path="/reports" element={<Reports />} />
+      <Route path="/settings" element={<Settings />} />
 
       {/* Customer */}
 
@@ -38,7 +52,7 @@ function App() {
 
       <Route path="/customer/checkout" element={<Checkout />} />
 
-      <Route path="/customer/orders" element={<Orders />} />
+      <Route path="/customer/orders" element={<Order />} />
 
       <Route
         path="/customer/complaints"
@@ -54,6 +68,8 @@ function App() {
 path="/customer/order-success"
 element={<OrderSuccess />}
 />
+
+
 
     </Routes>
   );

@@ -1,110 +1,67 @@
-const orders = [
-  {
-    id: "#1024",
-    customer: "Rahul",
-    amount: "₹240",
-    status: "Completed",
-  },
-  {
-    id: "#1025",
-    customer: "Priya",
-    amount: "₹120",
-    status: "Pending",
-  },
-  {
-    id: "#1026",
-    customer: "John",
-    amount: "₹560",
-    status: "Completed",
-  },
-  {
-    id: "#1027",
-    customer: "Asha",
-    amount: "₹89",
-    status: "Processing",
-  },
-];
+interface Order {
+  customerId: {
+    name: string;
+  };
+  totalAmount: number;
+  status: string;
+  paymentMethod: string;
+  createdAt: string;
+}
 
-function RecentOrders() {
+interface Props {
+  orders: Order[];
+}
+
+function RecentOrders({ orders }: Props) {
   return (
     <div className="rounded-3xl border border-[#243652] bg-[#14233A] p-8">
-
       <div className="mb-8 flex items-center justify-between">
-
         <h2 className="text-2xl font-bold text-white">
-
           Recent Orders
-
         </h2>
 
         <button className="text-[#C7F464]">
-
           View All
-
         </button>
-
       </div>
 
       <table className="w-full">
-
         <thead>
-
           <tr className="border-b border-[#243652] text-slate-400">
-
-            <th className="pb-4 text-left">Order</th>
             <th className="pb-4 text-left">Customer</th>
             <th className="pb-4 text-left">Amount</th>
+            <th className="pb-4 text-left">Payment</th>
             <th className="pb-4 text-left">Status</th>
-
           </tr>
-
         </thead>
 
         <tbody>
-
-          {orders.map((order) => (
-
+          {orders.map((order, index) => (
             <tr
-              key={order.id}
+              key={index}
               className="border-b border-[#243652]"
             >
-
               <td className="py-5">
-
-                {order.id}
-
+                {order.customerId?.name ?? "Unknown"}
               </td>
 
               <td>
-
-                {order.customer}
-
+                ₹{order.totalAmount.toLocaleString()}
               </td>
 
               <td>
-
-                {order.amount}
-
+                {order.paymentMethod}
               </td>
 
               <td>
-
                 <span className="rounded-full bg-[#C7F464] px-4 py-2 text-sm font-semibold text-black">
-
                   {order.status}
-
                 </span>
-
               </td>
-
             </tr>
-
           ))}
-
         </tbody>
-
       </table>
-
     </div>
   );
 }
