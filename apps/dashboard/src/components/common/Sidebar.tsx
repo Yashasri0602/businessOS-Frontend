@@ -1,24 +1,63 @@
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { Icons } from "../../constants/icons";
 
 const menuItems = [
-  { label: "Dashboard", path: "/", icon: Icons.dashboard },
-  { label: "Inventory", path: "/inventory", icon: Icons.inventory },
-  { label: "Orders", path: "/orders", icon: Icons.orders },
-  { label: "Customers", path: "/customers", icon: Icons.customers },
-  { label: "Employees", path: "/employees", icon: Icons.employees },
-  { label: "Finance", path: "/finance", icon: Icons.finance },
-  { label: "Reports", path: "/reports", icon: Icons.reports },
-  { label: "Settings", path: "/settings", icon: Icons.settings },
+  {
+    label: "Dashboard",
+    path: "/dashboard",
+    icon: Icons.dashboard,
+  },
+  {
+    label: "Inventory",
+    path: "/inventory",
+    icon: Icons.inventory,
+  },
+  {
+    label: "Orders",
+    path: "/orders",
+    icon: Icons.orders,
+  },
+  {
+    label: "Customers",
+    path: "/customers",
+    icon: Icons.customers,
+  },
+  {
+    label: "Employees",
+    path: "/employees",
+    icon: Icons.employees,
+  },
+  {
+    label: "Finance",
+    path: "/finance",
+    icon: Icons.finance,
+  },
+  {
+    label: "Reports",
+    path: "/reports",
+    icon: Icons.reports,
+  },
+  {
+    label: "Profile",
+    path: "/profile",
+    icon: Icons.customers,
+  }
 ];
 
 function Sidebar() {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    // Redirect to Landing Page
+    window.location.href = "http://localhost:5173";
+  };
+
   return (
-    <aside className="flex h-screen flex-col overflow-y-auto bg-[#081120] px-8 py-8">
+    <aside className="flex h-screen flex-col bg-[#081120] px-8 py-8">
 
       {/* Logo */}
 
-      <div className="mb-10 flex items-center gap-4 shrink-0">
+      <div className="mb-10 flex items-center gap-4">
 
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#C7F464] text-3xl">
           🚀
@@ -36,9 +75,9 @@ function Sidebar() {
 
       </div>
 
-      {/* Menu */}
+      {/* Navigation */}
 
-      <nav className="flex flex-col gap-3">
+      <nav className="flex-1 space-y-3 overflow-y-auto">
 
         {menuItems.map((item) => {
           const Icon = item.icon;
@@ -63,6 +102,15 @@ function Sidebar() {
         })}
 
       </nav>
+
+      {/* Logout */}
+
+      <button
+        onClick={handleLogout}
+        className="mt-8 flex items-center justify-center gap-2 rounded-2xl border border-red-500 px-5 py-3 text-lg font-semibold text-red-400 transition hover:bg-red-500 hover:text-white"
+      >
+        🚪 Logout
+      </button>
 
     </aside>
   );

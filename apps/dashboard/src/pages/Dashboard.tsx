@@ -5,11 +5,10 @@ import PageHeader from "../components/common/PageHeader";
 
 import KpiGrid from "../components/dashboard/analytics/KpiGrid";
 import RevenueChart from "../components/dashboard/charts/RevenueChart";
-
+import RecentActivity from "../components/dashboard/widgets/RecentActivity";
 import InventoryStatus from "../components/dashboard/widgets/InventoryStatus";
 import RecentOrders from "../components/dashboard/widgets/RecentOrders";
 import AIInsights from "../components/dashboard/widgets/AiInsights";
-import Notifications from "../components/dashboard/widgets/Notifications";
 import QuickActions from "../components/dashboard/widgets/QuickActions";
 
 import { getDashboard } from "../services/dashboard.service";
@@ -39,7 +38,7 @@ function Dashboard() {
   if (loading) {
     return (
       <DashboardLayout>
-        <div className="text-white text-xl">
+        <div className="text-xl text-white">
           Loading dashboard...
         </div>
       </DashboardLayout>
@@ -49,7 +48,7 @@ function Dashboard() {
   if (!dashboard) {
     return (
       <DashboardLayout>
-        <div className="text-red-400 text-xl">
+        <div className="text-xl text-red-400">
           Failed to load dashboard.
         </div>
       </DashboardLayout>
@@ -66,37 +65,48 @@ function Dashboard() {
 
       <KpiGrid kpis={dashboard.kpis} />
 
-      <div className="mt-8 grid gap-6 xl:grid-cols-3">
+      <div className="mt-8 mb-8 grid gap-6 xl:grid-cols-3">
 
-        <div className="xl:col-span-2">
-          <RevenueChart />
-        </div>
+        {/* Left Column */}
 
-        <InventoryStatus
-          inventory={dashboard.inventoryStatus}
-        />
+        <div className="space-y-6 xl:col-span-2">
 
-      </div>
+          <RevenueChart
+            revenue={dashboard.kpis.totalRevenue}
+            orders={dashboard.kpis.totalOrders}
+            customers={dashboard.kpis.totalCustomers}
+            expenses={dashboard.kpis.totalExpenses}
+          />
 
-      <div className="mt-8 grid gap-6 xl:grid-cols-3">
-
-        <div className="xl:col-span-2">
           <RecentOrders
             orders={dashboard.recentOrders}
           />
+
+            <RecentActivity
+              revenue={dashboard.kpis.totalRevenue}
+              orders={dashboard.kpis.totalOrders}
+              customers={dashboard.kpis.totalCustomers}
+              products={dashboard.kpis.totalProducts}
+            />
+
         </div>
 
-        <AIInsights />
+        {/* Right Sidebar */}
+
+        <div className="self-start space-y-6 xl:sticky xl:top-6">
+
+          <InventoryStatus
+            inventory={dashboard.inventoryStatus}
+          />
+
+          <AIInsights />
+
+
+        </div>
 
       </div>
 
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-
-        <Notifications />
-
-        <QuickActions />
-
-      </div>
+      <QuickActions />
 
     </DashboardLayout>
   );

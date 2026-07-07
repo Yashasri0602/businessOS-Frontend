@@ -63,7 +63,7 @@ function Inventory() {
 
           <div className="mt-8">
             <ProductTable
-                products={products.filter((product) =>
+                products={filteredProducts.filter((product) =>
                   product.name
                     .toLowerCase()
                     .includes(search.toLowerCase())

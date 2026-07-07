@@ -4,7 +4,7 @@ import ProfileCard from "../../components/customer/profile/ProfileCard";
 import ProfileStats from "../../components/customer/profile/ProfileStats";
 import SavedAddresses from "../../components/customer/profile/SavedAddresses";
 
-function Profile() {
+function CustomerProfile() {
   return (
     <CustomerLayout>
 
@@ -28,4 +28,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default CustomerProfile;
