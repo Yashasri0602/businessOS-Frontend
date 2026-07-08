@@ -49,7 +49,7 @@ function Sidebar() {
     localStorage.removeItem("token");
 
     // Redirect to Landing Page
-    window.location.href = "http://localhost:5173";
+    window.location.href = ""https://business-os-frontend-dashboard.vercel.app";
   };
 
   return (
